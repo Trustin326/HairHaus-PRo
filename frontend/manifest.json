@@ -1,0 +1,10 @@
+{
+  "name": "Tha DollHouse Salon Suite",
+  "short_name": "SalonSuite",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#C9A24D",
+  "icons": [
+    { "src": "icon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
