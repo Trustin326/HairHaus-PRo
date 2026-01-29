@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HairHaus Pro | Luxury Salon Software</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{
+  --black:#0b0b0b;
+  --white:#ffffff;
+  --gold:#c9a24d;
+  --soft:#f5f5f5;
+}
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--black);
+  color:var(--white);
+}
+a{color:var(--gold);text-decoration:none}
+button{
+  background:var(--gold);
+  border:none;
+  padding:12px 20px;
+  border-radius:8px;
+  font-weight:600;
+  cursor:pointer;
+}
+input,select,textarea{
+  width:100%;
+  padding:10px;
+  margin-top:6px;
+  border-radius:6px;
+  border:1px solid #333;
+  background:#111;
+  color:white;
+}
+.hidden{display:none}
+
+/* HERO */
+.hero{
+  padding:80px 20px;
+  text-align:center;
+}
+.hero h1{
+  font-size:3rem;
+  color:var(--gold);
+}
+.hero p{
+  max-width:600px;
+  margin:20px auto;
+  opacity:.9;
+}
+
+/* CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+  padding:40px 20px;
+}
+.card{
+  background:#111;
+  padding:25px;
+  border-radius:14px;
+  border:1px solid #222;
+}
+.card h3{color:var(--gold)}
+
+/* LOGIN */
+.login-box{
+  max-width:400px;
+  margin:60px auto;
+  background:#111;
+  padding:30px;
+  border-radius:14px;
+  border:1px solid #222;
+}
+
+/* DASHBOARD */
+.dashboard{
+  padding:30px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
+}
+.stat{
+  background:#111;
+  padding:20px;
+  border-radius:12px;
+  border:1px solid #222;
+}
+.stat h2{color:var(--gold)}
+
+.nav{
+  display:flex;
+  gap:15px;
+  margin-bottom:20px;
+}
+.nav button{
+  background:#222;
+}
+</style>
+</head>
+<body>
+
+<!-- LANDING -->
+<div id="landing">
+  <div class="hero">
+    <h1>HairHaus Pro</h1>
+    <p>Luxury booking, client memory & revenue tools built for modern hair professionals.</p>
+    <button onclick="showLogin()">Login</button>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <h3>✂ Smart Booking</h3>
+      <p>Deposits, no-show protection, service timing & online booking links.</p>
+    </div>
+    <div class="card">
+      <h3>💇 Client Memory</h3>
+      <p>Hair notes, formulas, photos & service history saved forever.</p>
+    </div>
+    <div class="card">
+      <h3>📊 Owner Analytics</h3>
+      <p>Revenue, bookings, top services & growth insights.</p>
+    </div>
+    <div class="card">
+      <h3>💌 Automated Follow-Ups</h3>
+      <p>Reminders, rebook prompts & loyalty tracking.</p>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="cards">
+    <div class="card">
+      <h3>Starter</h3>
+      <h2>$19/mo</h2>
+      <p>Solo Stylists</p>
+      <a href="https://buy.stripe.com/test_Starter"><button>Subscribe</button></a>
+    </div>
+    <div class="card">
+      <h3>Pro</h3>
+      <h2>$39/mo</h2>
+      <p>Busy Salons</p>
+      <a href="https://buy.stripe.com/test_Pro"><button>Subscribe</button></a>
+    </div>
+    <div class="card">
+      <h3>Studio</h3>
+      <h2>$79/mo</h2>
+      <p>Multi-Chair Shops</p>
+      <a href="https://buy.stripe.com/test_Studio"><button>Subscribe</button></a>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="hidden">
+  <div class="login-box">
+    <h2 style="color:var(--gold)">Login</h2>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Enter</button>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden dashboard">
+  <div class="nav">
+    <button onclick="view('overview')">Overview</button>
+    <button onclick="view('clients')">Clients</button>
+    <button onclick="view('bookings')">Bookings</button>
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div id="overview">
+    <div class="stats">
+      <div class="stat"><h2>$4,820</h2><p>Monthly Revenue</p></div>
+      <div class="stat"><h2>126</h2><p>Appointments</p></div>
+      <div class="stat"><h2>34%</h2><p>Repeat Clients</p></div>
+      <div class="stat"><h2>$920</h2><p>No-Show Losses Saved</p></div>
+    </div>
+  </div>
+
+  <div id="clients" class="hidden">
+    <h2 style="color:var(--gold)">Client Profiles</h2>
+    <p>• Hair Type • Color Formula • Notes • Photos</p>
+  </div>
+
+  <div id="bookings" class="hidden">
+    <h2 style="color:var(--gold)">Bookings</h2>
+    <p>Upcoming appointments, deposits & service times.</p>
+  </div>
+</div>
+
+<script>
+function showLogin(){
+  landing.classList.add('hidden')
+  login.classList.remove('hidden')
+}
+
+function login(){
+  const e=email.value
+  const p=password.value
+  if((e==="owner@hairhaus.com"&&p==="owner123")||(e==="stylist@hairhaus.com"&&p==="stylist123")){
+    login.classList.add('hidden')
+    dashboard.classList.remove('hidden')
+  }else{
+    alert("Invalid login")
+  }
+}
+
+function logout(){
+  dashboard.classList.add('hidden')
+  landing.classList.remove('hidden')
+}
+
+function view(v){
+  ["overview","clients","bookings"].forEach(id=>document.getElementById(id).classList.add('hidden'))
+  document.getElementById(v).classList.remove('hidden')
+}
+</script>
+
+</body>
+</html>
