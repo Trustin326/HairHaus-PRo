@@ -222,7 +222,16 @@ function view(v){
   document.getElementById(v).classList.remove('hidden')
 }
 </script>
+<script>
+function showLogin(){
+  document.getElementById("loginScreen").style.display = "block";
+  document.getElementById("landingScreen").style.display = "none";
+}
 
+async function doLogin(){
+  alert("Login clicked — Supabase will be connected next");
+}
+</script>
 </body<!-- LOGIN SCREEN -->
 <div id="loginScreen" style="display:none; padding:40px; text-align:center;">
   <h2 style="color:gold;">Login to HairHaus</h2>
