@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HairHaus Pro | Tha DollHouse</title>
+
+<link rel="manifest" href="manifest.json">
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:black;
+  color:white;
+  text-align:center;
+}
+
+h1,h2{
+  color:#C9A24D;
+}
+
+button{
+  background:#C9A24D;
+  border:none;
+  padding:14px 30px;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+input{
+  padding:14px;
+  width:260px;
+  margin:10px;
+  border-radius:8px;
+  border:1px solid #333;
+  background:#111;
+  color:white;
+}
+
+.screen{
+  display:none;
+  padding:40px 20px;
+}
+
+#landingScreen{
+  display:block;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LANDING -->
+<div id="landingScreen" class="screen">
+  <h1>HairHaus Pro</h1>
+  <p>Luxury Salon Operating System</p>
+
+  <button onclick="showLogin()">Login</button>
+</div>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="screen">
+  <h2>Login</h2>
+
+  <input id="email" placeholder="Email">
+  <br>
+  <input id="password" type="password" placeholder="Password">
+  <br>
+
+  <button onclick="loginUser()">Enter Dashboard</button>
+
+  <p id="loginMsg"></p>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboardScreen" class="screen">
+  <h2>Owner Dashboard</h2>
+
+  <p>Welcome to Tha DollHouse Salon Suite</p>
+
+  <div style="margin-top:30px;">
+    <h3>$4,820</h3>
+    <p>Monthly Revenue</p>
+  </div>
+
+  <button onclick="logout()">Logout</button>
+</div>
+
+<!-- SUPABASE SCRIPT -->
+<script type="module">
+
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+/* 🔴 PASTE YOUR KEYS HERE */
+const SUPABASE_URL = "PASTE_URL_HERE";
+const SUPABASE_ANON_KEY = "PASTE_ANON_KEY_HERE";
+
+let supabase = null;
+
+if(SUPABASE_URL.includes("http")){
+  supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+/* SCREEN CONTROL */
+window.showLogin = function(){
+  landingScreen.style.display = "none";
+  loginScreen.style.display = "block";
+}
+
+/* LOGIN FUNCTION */
+window.loginUser = async function(){
+
+  if(!supabase){
+    loginMsg.innerText = "Supabase not connected yet";
+    return;
+  }
+
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password
+  });
+
+  if(error){
+    loginMsg.innerText = error.message;
+    return;
+  }
+
+  loginScreen.style.display="none";
+  dashboardScreen.style.display="block";
+}
+
+/* LOGOUT */
+window.logout = async function(){
+  if(supabase){
+    await supabase.auth.signOut();
+  }
+
+  dashboardScreen.style.display="none";
+  landingScreen.style.display="block";
+}
+
+</script>
+
+<!-- PWA -->
+<script>
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("service-worker.js");
+}
+</script>
+
+</body>
+</html>
