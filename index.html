@@ -1,0 +1,1805 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>HairHaus Pro | Tha DollHouse</title>
+<meta name="theme-color" content="#0b0b0b"/>
+<link rel="manifest" href="manifest.json">
+<style>
+:root{
+  --bg:#050505;
+  --panel:#0e0e0f;
+  --panel2:#121214;
+  --text:#f6f6f7;
+  --muted:#b9b9c2;
+  --gold:#C9A24D;
+  --gold2:#FFD87A;
+  --ok:#42f59e;
+  --danger:#ff5a5a;
+  --shadow: 0 18px 45px rgba(0,0,0,.55);
+  --radius: 18px;
+  --radius2: 26px;
+  --ring: 0 0 0 1px rgba(255,255,255,.10);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 500px at 50% -10%, rgba(201,162,77,.16), transparent 60%),
+    radial-gradient(900px 450px at 12% 18%, rgba(255,255,255,.06), transparent 55%),
+    radial-gradient(900px 450px at 88% 22%, rgba(255,216,122,.08), transparent 55%),
+    linear-gradient(180deg, #000, #060607 40%, #000);
+}
+a{color:inherit; text-decoration:none}
+img{max-width:100%; display:block}
+button{
+  border:0; cursor:pointer;
+  border-radius:14px;
+  padding:12px 14px;
+  font-weight:900;
+  letter-spacing:.2px;
+  color:#0b0b0b;
+  background: linear-gradient(180deg, var(--gold2), var(--gold));
+  box-shadow: 0 10px 24px rgba(201,162,77,.18);
+}
+button:hover{filter:brightness(1.03)}
+button:active{transform:translateY(1px)}
+button.ghost{
+  background: rgba(255,255,255,.06);
+  color:var(--text);
+  box-shadow:none;
+  border:1px solid rgba(255,255,255,.12);
+}
+button.dark{
+  background: rgba(0,0,0,.28);
+  color:var(--text);
+  box-shadow:none;
+  border:1px solid rgba(255,255,255,.14);
+}
+button.danger{
+  background: rgba(255,90,90,.10);
+  color:var(--danger);
+  box-shadow:none;
+  border:1px solid rgba(255,90,90,.28);
+}
+input, select, textarea{
+  width:100%;
+  padding:12px 12px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(10,10,11,.75);
+  color:var(--text);
+  outline:none;
+}
+input:focus,select:focus,textarea:focus{border-color: rgba(201,162,77,.55); box-shadow: 0 0 0 4px rgba(201,162,77,.12)}
+textarea{min-height:110px; resize:vertical}
+small{color:var(--muted)}
+code{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}
+.container{max-width:1160px; margin:0 auto; padding:18px 14px 96px}
+.hidden{display:none !important}
+
+.topbar{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:14px 14px;
+  border-radius:var(--radius2);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow: var(--shadow);
+}
+.brand{display:flex; align-items:center; gap:12px; min-width:220px}
+.brandMark{
+  width:42px; height:42px; border-radius:16px;
+  background:
+    radial-gradient(18px 18px at 30% 30%, rgba(255,255,255,.35), transparent 65%),
+    linear-gradient(135deg, rgba(255,216,122,1), rgba(201,162,77,.28));
+  border:1px solid rgba(255,255,255,.16);
+}
+.brandLogo{
+  width:42px; height:42px; border-radius:16px; object-fit:cover;
+  border:1px solid rgba(255,255,255,.18); background:#111;
+}
+.brandName{font-weight:1000; letter-spacing:.2px}
+.badges{display:flex; gap:10px; align-items:center; justify-content:flex-end; flex-wrap:wrap}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 10px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.30);
+  color: var(--muted);
+  font-weight:900;
+  font-size:12px;
+}
+.dot{width:8px;height:8px;border-radius:999px;background:var(--gold)}
+.dot.ok{background:var(--ok)}
+.dot.danger{background:var(--danger)}
+
+.grid{display:grid; grid-template-columns: 1fr; gap:14px; margin-top:14px}
+@media (min-width: 980px){ .grid{grid-template-columns: 440px 1fr;} }
+
+.card{
+  border-radius:var(--radius2);
+  border:1px solid rgba(255,255,255,.10);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+  box-shadow: var(--shadow);
+  padding:18px;
+  overflow:hidden;
+}
+.card.soft{
+  background:
+    radial-gradient(900px 300px at 40% 0%, rgba(201,162,77,.16), transparent 60%),
+    linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+}
+.h1{font-size:34px; font-weight:1000; margin:0}
+.h2{font-size:16px; font-weight:1000; margin:0}
+.muted{color:var(--muted)}
+.hr{height:1px; background: rgba(255,255,255,.10); margin:16px 0}
+
+.pills{display:flex; gap:8px; flex-wrap:wrap; margin-top:14px}
+.pill{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:8px 12px; border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background: rgba(0,0,0,.22);
+  font-size:12px; font-weight:900;
+}
+.pill.gold{border-color: rgba(201,162,77,.45); background: rgba(201,162,77,.10)}
+.pill.ok{border-color: rgba(66,245,158,.35); background: rgba(66,245,158,.08)}
+.pill.danger{border-color: rgba(255,90,90,.35); background: rgba(255,90,90,.08)}
+
+.featureGrid{
+  display:grid;
+  grid-template-columns: repeat(1, minmax(0,1fr));
+  gap:12px;
+}
+@media(min-width:880px){ .featureGrid{grid-template-columns: repeat(2, minmax(0,1fr));} }
+.feature{
+  border-radius:18px;
+  background: rgba(0,0,0,.30);
+  border:1px solid rgba(255,255,255,.10);
+  padding:14px;
+}
+.feature b{display:block; font-size:14px}
+.feature small{display:block; margin-top:6px}
+
+.heroImgCard{padding:0; display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,.35)}
+.heroImgCard img{width:100%; height:100%; object-fit:cover}
+
+.notice{
+  padding:12px 12px;
+  border-radius:16px;
+  border:1px solid rgba(201,162,77,.30);
+  background: rgba(201,162,77,.10);
+}
+
+.row{display:flex; gap:10px; flex-wrap:wrap}
+.row > *{flex:1}
+
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px}
+.tab{
+  padding:10px 12px; border-radius:999px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  font-weight:1000;
+}
+.tab.active{ background: rgba(201,162,77,.18); border-color: rgba(201,162,77,.42); }
+
+.kpis{display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; margin-top:12px}
+@media(min-width:560px){ .kpis{grid-template-columns: repeat(4, minmax(0,1fr));} }
+.kpi{
+  padding:12px;
+  border-radius:18px;
+  background: rgba(0,0,0,.30);
+  border:1px solid rgba(255,255,255,.10);
+}
+.kpi .n{font-size:18px; font-weight:1000; color:var(--gold2)}
+.kpi .l{font-size:12px; color:var(--muted); margin-top:4px}
+
+.list{display:flex; flex-direction:column; gap:10px; margin-top:12px}
+.item{
+  padding:12px;
+  border-radius:18px;
+  background: rgba(0,0,0,.30);
+  border:1px solid rgba(255,255,255,.10);
+}
+.itemTop{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+.itemTitle{font-weight:1000}
+.itemMeta{color:var(--muted); font-size:12px; margin-top:5px}
+.thumb{
+  width:54px; height:54px; border-radius:16px; object-fit:cover;
+  border:1px solid rgba(255,255,255,.14); background:#0d0d0f;
+}
+.thumbLg{width:100%; border-radius:18px; border:1px solid rgba(255,255,255,.12)}
+
+.footerNav{
+  position:fixed; left:0; right:0; bottom:0;
+  background: rgba(0,0,0,.78);
+  backdrop-filter: blur(12px);
+  border-top:1px solid rgba(255,255,255,.12);
+  padding:10px 12px env(safe-area-inset-bottom);
+}
+.footerNav .bar{
+  max-width:1160px; margin:0 auto;
+  display:flex; gap:10px; justify-content:space-between;
+}
+.navBtn{
+  flex:1;
+  padding:10px 10px;
+  border-radius:16px;
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text);
+  font-weight:1000;
+}
+.navBtn.active{ background: rgba(201,162,77,.18); border-color: rgba(201,162,77,.40); }
+
+.modal{
+  position:fixed; inset:0;
+  background: rgba(0,0,0,.65);
+  display:flex; align-items:center; justify-content:center;
+  padding:18px;
+}
+.modalCard{
+  width:min(720px, 100%);
+  border-radius:26px;
+  border:1px solid rgba(255,255,255,.12);
+  background: linear-gradient(180deg, rgba(18,18,20,.98), rgba(10,10,12,.98));
+  box-shadow: var(--shadow);
+  padding:16px;
+}
+.modalHead{display:flex; align-items:center; justify-content:space-between; gap:10px}
+.modalTitle{font-weight:1000; font-size:16px}
+.right{display:flex; gap:10px; align-items:center; justify-content:flex-end}
+.locked{opacity:.60; pointer-events:none; filter:grayscale(.2)}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="topbar">
+    <div class="brand">
+      <div id="brandMark" class="brandMark"></div>
+      <img id="brandLogo" class="brandLogo hidden" alt="logo"/>
+      <div>
+        <div class="brandName" id="brandName">HairHaus Pro</div>
+        <small id="brandSub">Tha DollHouse™ Salon Suite</small>
+      </div>
+    </div>
+
+    <div class="badges">
+      <span class="badge" id="planBadge"><span class="dot"></span><span id="planText">trial</span></span>
+      <span class="badge" id="roleBadge"><span class="dot"></span><span id="roleText">guest</span></span>
+      <button class="ghost" id="btnSettings" type="button">Settings</button>
+      <button class="ghost hidden" id="btnLogout" type="button">Logout</button>
+    </div>
+  </div>
+
+  <!-- LANDING -->
+  <div id="screenLanding" class="grid">
+    <div class="card soft">
+      <div class="h1" style="margin-top:4px">
+        <span style="background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent">HairHaus Pro</span>
+      </div>
+      <div style="margin-top:10px; font-weight:1000">Luxury Salon Operating System</div>
+      <p class="muted" style="margin:10px 0 0; line-height:1.65">
+        Run your salon like a brand — bookings, services gallery, client memory, photo history, bookkeeping, profit analytics,
+        and a social posting hub — built for modern stylists.
+      </p>
+
+      <div class="row" style="margin-top:14px">
+        <button id="btnEnter" type="button">Enter Dashboard</button>
+        <button class="dark" id="btnPricing" type="button">View Pricing</button>
+      </div>
+
+      <div class="pills">
+        <span class="pill gold">Bookings</span>
+        <span class="pill gold">Services + Photos</span>
+        <span class="pill gold">Bookkeeping</span>
+        <span class="pill gold">Social Hub</span>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="h2">Login</div>
+      <div style="margin-top:10px">
+        <input id="email" placeholder="Email" autocomplete="email">
+        <div style="height:10px"></div>
+        <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+        <div class="row" style="margin-top:10px">
+          <button type="button" id="btnLogin">Login</button>
+          <button type="button" class="dark" id="btnSignup">Create Account</button>
+        </div>
+        <small id="authMsg" style="display:block; margin-top:10px"></small>
+      </div>
+
+      <div class="hr"></div>
+
+      <div class="h2">What you’re getting</div>
+      <div class="list">
+        <div class="item"><b>Owner + Stylist dashboards</b><div class="itemMeta">Role split, KPIs, and live salon ops</div></div>
+        <div class="item"><b>Booking calendar</b><div class="itemMeta">Deposit + status tracking with service selection</div></div>
+        <div class="item"><b>Business + bookkeeping</b><div class="itemMeta">Revenue, expenses, net profit, monthly summary</div></div>
+        <div class="item"><b>Social posting hub</b><div class="itemMeta">Upload, caption, save drafts (API-ready)</div></div>
+      </div>
+    </div>
+
+    <div class="card heroImgCard" style="min-height:520px">
+      <img src="assets/img/hero-team.png" alt="HairHaus team">
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="screenApp" class="hidden">
+    <div class="card soft" id="salonHeader">
+      <div class="row" style="align-items:center">
+        <div style="display:flex; gap:12px; align-items:center; flex:2">
+          <img id="salonHeaderLogo" class="thumb" alt="salon logo" src="assets/img/hero-stylists.png" style="width:62px;height:62px;border-radius:18px">
+          <div>
+            <div style="font-weight:1000; font-size:20px" id="salonHeaderName">Your Salon</div>
+            <div class="muted" id="salonHeaderMission">Mission statement will show here.</div>
+          </div>
+        </div>
+        <div class="right" style="flex:1">
+          <span class="pill gold" id="pillPlan">trial</span>
+          <button class="dark" id="btnRefreshAll" type="button">Refresh</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT -->
+      <div class="card">
+        <div class="itemTop">
+          <div>
+            <div class="itemTitle">Quick Actions</div>
+            <div class="itemMeta" id="salonPill">No salon linked</div>
+          </div>
+          <span class="pill" id="pillRole">guest</span>
+        </div>
+
+        <div class="list">
+
+          <div class="item" id="boxOnboarding">
+            <div class="itemTitle">First-time setup</div>
+            <div class="itemMeta">If you just created an account, set your role and salon now.</div>
+            <div class="row" style="margin-top:10px">
+              <select id="obRole">
+                <option value="owner">Owner</option>
+                <option value="stylist">Stylist</option>
+              </select>
+              <input id="obSalonId" placeholder="Salon ID (stylists only)">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="obSalonName" placeholder="Salon name (owners only)">
+            </div>
+            <button type="button" style="width:100%; margin-top:10px" id="btnOnboard">Save Setup</button>
+            <small id="obMsg" style="display:block; margin-top:8px"></small>
+          </div>
+
+          <div class="item" id="boxSalon" >
+            <div class="itemTitle">Salon Profile</div>
+            <div class="itemMeta">Owner can edit logo + mission statement.</div>
+            <div class="row" style="margin-top:10px">
+              <input id="salonName" placeholder="Salon name">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="salonLogoUrl" placeholder="Salon logo URL (or leave blank)">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <textarea id="salonMission" placeholder="Mission statement"></textarea>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button type="button" id="btnSaveSalon">Save</button>
+              <button type="button" class="ghost" id="btnOpenPricing2">Pricing</button>
+            </div>
+            <small id="salonMsg" style="display:block; margin-top:8px"></small>
+          </div>
+
+          <div class="item" id="boxAddClient">
+            <div class="itemTitle">Add Client</div>
+            <div class="row" style="margin-top:10px">
+              <input id="clientName" placeholder="Client name">
+              <input id="clientPhone" placeholder="Phone (optional)">
+            </div>
+            <button type="button" style="width:100%; margin-top:10px" id="btnAddClient">Add Client</button>
+            <small id="clientMsg" style="display:block; margin-top:8px"></small>
+          </div>
+
+          <div class="item" id="boxAddBooking">
+            <div class="itemTitle">Add Booking</div>
+            <div class="row" style="margin-top:10px">
+              <select id="bkClient"></select>
+              <select id="bkStylist"></select>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <select id="bkService"></select>
+              <input id="bkTime" type="datetime-local">
+            </div>
+            <div class="row" style="margin-top:10px; align-items:flex-start">
+              <div id="bkServicePreview" class="item" style="flex:1; margin:0; padding:10px; background:rgba(0,0,0,.22)">
+                <div class="itemTitle" style="font-size:13px">Service preview</div>
+                <div class="itemMeta">Select a service to see price + photo.</div>
+              </div>
+              <div style="flex:1">
+                <select id="bkDeposit">
+                  <option value="false">Deposit Not Paid</option>
+                  <option value="true">Deposit Paid</option>
+                </select>
+                <div style="height:10px"></div>
+                <select id="bkStatus">
+                  <option value="scheduled">Scheduled</option>
+                  <option value="completed">Completed</option>
+                  <option value="cancelled">Cancelled</option>
+                  <option value="no_show">No-Show</option>
+                </select>
+              </div>
+            </div>
+            <button type="button" style="width:100%; margin-top:10px" id="btnAddBooking">Add Booking</button>
+            <small id="bookingMsg" style="display:block; margin-top:8px"></small>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT -->
+      <div class="card">
+        <div class="itemTop">
+          <div>
+            <div class="h1" style="font-size:22px; margin:0" id="screenTitle">Dashboard</div>
+            <div class="itemMeta">Owners see full analytics. Stylists see their assigned items (configurable).</div>
+          </div>
+          <div class="right">
+            <button class="ghost" type="button" id="btnRefreshPlan">Refresh Plan</button>
+            <button class="danger" type="button" id="btnLogout2">Logout</button>
+          </div>
+        </div>
+
+        <div class="tabs">
+          <div class="tab active" data-tab="dash">Dashboard</div>
+          <div class="tab" data-tab="bookings">Bookings</div>
+          <div class="tab" data-tab="services">Services</div>
+          <div class="tab" data-tab="stylists">Stylists</div>
+          <div class="tab" data-tab="bookkeeping">Bookkeeping</div>
+          <div class="tab" data-tab="social">Social Hub</div>
+          <div class="tab" data-tab="ops">Notes & Tasks</div>
+        </div>
+
+        <!-- DASH -->
+        <div id="viewDash" style="margin-top:12px">
+          <div class="kpis">
+            <div class="kpi"><div class="n" id="kRev">$0</div><div class="l">Revenue (30d)</div></div>
+            <div class="kpi"><div class="n" id="kExp">$0</div><div class="l">Expenses (30d)</div></div>
+            <div class="kpi"><div class="n" id="kProfit">$0</div><div class="l">Net Profit (30d)</div></div>
+            <div class="kpi"><div class="n" id="kBookings">0</div><div class="l">Bookings (30d)</div></div>
+          </div>
+
+          <div class="notice" style="margin-top:12px">
+            <b>Plan:</b> <span id="dashPlanText">trial</span> • <b>Tip:</b> Connect Stripe webhook/Edge Function to auto-update <code>salons.plan</code> after payment.
+          </div>
+
+          <div class="list" id="ownerOnlyPerf">
+            <div class="item">
+              <div class="itemTitle">Owner Analytics (Live)</div>
+              <div class="itemMeta">Bookings + performance summary by stylist (30 days).</div>
+              <div class="list" id="stylistPerf"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BOOKINGS -->
+        <div id="viewBookings" class="hidden" style="margin-top:12px">
+          <div class="notice">Mobile-first calendar list. Owners can update status.</div>
+          <div class="list" id="bookingsList"></div>
+        </div>
+
+        <!-- SERVICES -->
+        <div id="viewServices" class="hidden" style="margin-top:12px">
+          <div class="notice">Services power booking selection + per-service profit estimates.</div>
+
+          <div class="item" id="serviceForm">
+            <div class="itemTitle">Add / Update Service</div>
+            <div class="row" style="margin-top:10px">
+              <input id="svcName" placeholder="Service name (e.g., Silk Press)">
+              <input id="svcPrice" type="number" step="0.01" placeholder="Price (e.g., 90)">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="svcCost" type="number" step="0.01" placeholder="Cost estimate (optional)">
+              <input id="svcPhotoUrl" placeholder="Photo URL (or use upload below)">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="svcPhotoFile" type="file" accept="image/*">
+              <button type="button" class="dark" id="btnUploadSvcPhoto">Upload Photo</button>
+            </div>
+            <button type="button" style="width:100%; margin-top:10px" id="btnSaveService">Save Service</button>
+            <small id="svcMsg" style="display:block; margin-top:8px"></small>
+          </div>
+
+          <div class="list" id="servicesList"></div>
+        </div>
+
+        <!-- STYLISTS -->
+        <div id="viewStylists" class="hidden" style="margin-top:12px">
+          <div class="notice">Owners can add stylists with names + photos.</div>
+
+          <div class="item" id="stylistForm">
+            <div class="itemTitle">Add Stylist</div>
+            <div class="row" style="margin-top:10px">
+              <input id="styName" placeholder="Stylist name">
+              <input id="styPhotoUrl" placeholder="Photo URL (or upload)">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="styPhotoFile" type="file" accept="image/*">
+              <button type="button" class="dark" id="btnUploadStyPhoto">Upload Photo</button>
+            </div>
+            <button type="button" style="width:100%; margin-top:10px" id="btnAddStylist">Add Stylist</button>
+            <small id="styMsg" style="display:block; margin-top:8px"></small>
+          </div>
+
+          <div class="list" id="stylistsList"></div>
+        </div>
+
+        <!-- BOOKKEEPING -->
+        <div id="viewBookkeeping" class="hidden" style="margin-top:12px">
+          <div class="notice">Track revenue + expenses. Profit is calculated automatically.</div>
+
+          <div class="kpis">
+            <div class="kpi"><div class="n" id="mRev">$0</div><div class="l">This month revenue</div></div>
+            <div class="kpi"><div class="n" id="mExp">$0</div><div class="l">This month expenses</div></div>
+            <div class="kpi"><div class="n" id="mProfit">$0</div><div class="l">This month net</div></div>
+            <div class="kpi"><div class="n" id="mTopSvc">—</div><div class="l">Top service</div></div>
+          </div>
+
+          <div class="item" style="margin-top:12px">
+            <div class="itemTitle">Add Entry</div>
+            <div class="row" style="margin-top:10px">
+              <select id="bkType">
+                <option value="revenue">Revenue</option>
+                <option value="expense">Expense</option>
+              </select>
+              <input id="bkAmount" type="number" step="0.01" placeholder="Amount">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="bkCategory" placeholder="Category (e.g., Supplies, Retail, Service)">
+              <input id="bkDate" type="date">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <select id="bkServiceLink"></select>
+              <input id="bkNote" placeholder="Note (optional)">
+            </div>
+            <button type="button" style="width:100%; margin-top:10px" id="btnAddEntry">Save Entry</button>
+            <small id="bkMsg" style="display:block; margin-top:8px"></small>
+          </div>
+
+          <div class="list" id="entriesList"></div>
+        </div>
+
+        <!-- SOCIAL -->
+        <div id="viewSocial" class="hidden" style="margin-top:12px">
+          <div class="notice">Save post drafts now — add Instagram/TikTok APIs later.</div>
+
+          <div class="item">
+            <div class="itemTitle">Create Post Draft</div>
+            <div class="row" style="margin-top:10px">
+              <input id="postCaption" placeholder="Caption">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="postFile" type="file" accept="image/*">
+              <button type="button" class="dark" id="btnUploadPostImg">Upload</button>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input id="postImgUrl" placeholder="Or paste image URL">
+            </div>
+            <button type="button" style="width:100%; margin-top:10px" id="btnSavePost">Save Draft</button>
+            <small id="postMsg" style="display:block; margin-top:8px"></small>
+          </div>
+
+          <div class="list" id="postsList"></div>
+        </div>
+
+        <!-- OPS -->
+        <div id="viewOps" class="hidden" style="margin-top:12px">
+          <div class="featureGrid">
+            <div class="item">
+              <div class="itemTitle">Global Notes</div>
+              <div class="itemMeta">Saved to Supabase (per salon)</div>
+              <textarea id="notesGlobal" placeholder="Write notes for your salon..."></textarea>
+              <div class="row" style="margin-top:10px">
+                <button type="button" id="btnSaveNotes">Save Notes</button>
+                <button type="button" class="ghost" id="btnExportNotes">Export</button>
+              </div>
+              <small id="notesMsg" style="display:block; margin-top:8px"></small>
+            </div>
+
+            <div class="item">
+              <div class="itemTitle">Checklist / Task Manager</div>
+              <div class="itemMeta">Add tasks, mark done, keep ops organized.</div>
+              <div class="row" style="margin-top:10px">
+                <input id="taskText" placeholder="New task (e.g., Order foils)">
+              </div>
+              <button type="button" style="width:100%; margin-top:10px" id="btnAddTask">Add Task</button>
+              <div class="list" id="tasksList"></div>
+              <small id="taskMsg" style="display:block; margin-top:8px"></small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- footer nav -->
+<div class="footerNav hidden" id="footerNav">
+  <div class="bar">
+    <button class="navBtn active" data-tab="dash" type="button">Dash</button>
+    <button class="navBtn" data-tab="bookings" type="button">Bookings</button>
+    <button class="navBtn" data-tab="services" type="button">Services</button>
+    <button class="navBtn" data-tab="bookkeeping" type="button">Bookkeeping</button>
+    <button class="navBtn" data-tab="social" type="button">Social</button>
+    <button class="navBtn" data-tab="ops" type="button">Ops</button>
+  </div>
+</div>
+
+<!-- settings modal -->
+<div id="settingsModal" class="modal hidden" aria-hidden="true">
+  <div class="modalCard">
+    <div class="modalHead">
+      <div class="modalTitle">Settings</div>
+      <div class="right">
+        <button class="ghost" type="button" id="btnCloseSettings">Close</button>
+      </div>
+    </div>
+    <div class="hr"></div>
+
+    <div class="notice">
+      <b>Supabase connection:</b> paste your Project URL + Anon key here. This saves to your browser (localStorage) so GitHub Pages stays safe.
+    </div>
+
+    <div class="row" style="margin-top:12px">
+      <input id="cfgUrl" placeholder="SUPABASE_URL (https://xxxx.supabase.co)">
+      <input id="cfgAnon" placeholder="SUPABASE_ANON_KEY">
+    </div>
+
+    <div class="row" style="margin-top:10px">
+      <input id="cfgStripeSolo" placeholder="Stripe Payment Link (Solo) — optional">
+      <input id="cfgStripeStudio" placeholder="Stripe Payment Link (Studio) — optional">
+    </div>
+    <div class="row" style="margin-top:10px">
+      <input id="cfgStripeWL" placeholder="Stripe Payment Link (White-Label) — optional">
+      <input id="cfgBrandName" placeholder="App name (optional)">
+    </div>
+
+    <div class="row" style="margin-top:10px">
+      <button type="button" id="btnSaveCfg">Save</button>
+      <button type="button" class="dark" id="btnResetCfg">Reset</button>
+    </div>
+    <small id="cfgMsg" style="display:block; margin-top:8px"></small>
+
+    <div class="hr"></div>
+    <div class="notice">
+      <b>Production note:</b> Stripe plan activation needs a webhook (server) to write to Supabase (<code>salons.plan</code>, <code>salons.white_label</code>).
+      This frontend includes the UI and refresh buttons.
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+/* ============================================================
+  CONFIG (safe on GitHub Pages)
+  - Stored in localStorage so you can swap keys without editing code
+============================================================ */
+const LS = {
+  url: "hh_supabase_url",
+  anon: "hh_supabase_anon",
+  stripe: "hh_stripe_links",
+  brand: "hh_brand_name"
+};
+
+function getStripeLinks(){
+  try{ return JSON.parse(localStorage.getItem(LS.stripe) || "{}"); }catch{ return {}; }
+}
+function setStripeLinks(obj){
+  localStorage.setItem(LS.stripe, JSON.stringify(obj || {}));
+}
+function getBrandName(){ return localStorage.getItem(LS.brand) || "HairHaus Pro"; }
+
+let SUPABASE_URL = localStorage.getItem(LS.url) || "https://fjjedjoakplopglfkjsn.supabase.co";
+let SUPABASE_ANON_KEY = localStorage.getItem(LS.anon) || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZqamVkam9ha3Bsb3BnbGZranNuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk3MTQzNjAsImV4cCI6MjA4NTI5MDM2MH0.svOkXz6Y3ZSLd75q11N83Zaj6ClUV9ZVHvSkI9JKzYc";
+let STRIPE_LINKS = Object.assign({ solo:"", studio:"", whitelabel:"" }, getStripeLinks());
+
+function setCfgMsg(msg, err=false){
+  const el = document.getElementById("cfgMsg");
+  el.style.color = err ? "var(--danger)" : "var(--muted)";
+  el.textContent = msg || "";
+}
+
+function setAuthMsg(msg, err=false){
+  const el = document.getElementById("authMsg");
+  el.style.color = err ? "var(--danger)" : "var(--muted)";
+  el.textContent = msg || "";
+}
+
+function isCfgValid(){
+  return SUPABASE_URL.startsWith("http") && SUPABASE_ANON_KEY.length > 20;
+}
+
+function applyStripeLinksToUI(){
+  // pricing buttons can be wired later; stored for your backend checkout
+}
+
+document.getElementById("btnSettings").addEventListener("click", ()=>{
+  document.getElementById("settingsModal").classList.remove("hidden");
+  document.getElementById("cfgUrl").value = SUPABASE_URL;
+  document.getElementById("cfgAnon").value = SUPABASE_ANON_KEY;
+  document.getElementById("cfgStripeSolo").value = STRIPE_LINKS.solo || "";
+  document.getElementById("cfgStripeStudio").value = STRIPE_LINKS.studio || "";
+  document.getElementById("cfgStripeWL").value = STRIPE_LINKS.whitelabel || "";
+  document.getElementById("cfgBrandName").value = localStorage.getItem(LS.brand) || "";
+  setCfgMsg("");
+});
+document.getElementById("btnCloseSettings").addEventListener("click", ()=>{
+  document.getElementById("settingsModal").classList.add("hidden");
+});
+document.getElementById("btnSaveCfg").addEventListener("click", ()=>{
+  SUPABASE_URL = document.getElementById("cfgUrl").value.trim();
+  SUPABASE_ANON_KEY = document.getElementById("cfgAnon").value.trim();
+  STRIPE_LINKS = {
+    solo: document.getElementById("cfgStripeSolo").value.trim(),
+    studio: document.getElementById("cfgStripeStudio").value.trim(),
+    whitelabel: document.getElementById("cfgStripeWL").value.trim()
+  };
+  const b = document.getElementById("cfgBrandName").value.trim();
+  if(b) localStorage.setItem(LS.brand, b); else localStorage.removeItem(LS.brand);
+
+  localStorage.setItem(LS.url, SUPABASE_URL);
+  localStorage.setItem(LS.anon, SUPABASE_ANON_KEY);
+  setStripeLinks(STRIPE_LINKS);
+  setCfgMsg(isCfgValid() ? "Saved. Refreshing connection…" : "Saved, but keys look invalid. Double-check URL + anon key.", !isCfgValid());
+  setTimeout(()=>location.reload(), 650);
+});
+document.getElementById("btnResetCfg").addEventListener("click", ()=>{
+  localStorage.removeItem(LS.url);
+  localStorage.removeItem(LS.anon);
+  localStorage.removeItem(LS.stripe);
+  localStorage.removeItem(LS.brand);
+  setCfgMsg("Reset. Reloading…");
+  setTimeout(()=>location.reload(), 450);
+});
+
+/* ============================================================
+  SUPABASE
+============================================================ */
+const supabase = isCfgValid() ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+function mustBeConnected(){
+  if(!supabase){
+    setAuthMsg("Supabase is not connected yet. Click Settings and paste your SUPABASE_URL + ANON key.", true);
+    return false;
+  }
+  return true;
+}
+
+/* ============================================================
+  STATE
+============================================================ */
+let user = null;
+let profile = null; // profiles: id, role, salon_id
+let salon = null;   // salons: id, name, plan, white_label, brand_color, logo_url, mission
+let clients = [];
+let stylists = [];
+let services = [];
+let bookings = [];
+let entries = [];
+let posts = [];
+let tasks = [];
+let globalNotes = "";
+
+const screens = {
+  landing: document.getElementById("screenLanding"),
+  app: document.getElementById("screenApp"),
+};
+
+function setBadge(textEl, badgeEl, text, type="gold"){
+  textEl.textContent = text;
+  const dot = badgeEl.querySelector(".dot");
+  dot.className = "dot";
+  if(type==="ok") dot.classList.add("ok");
+  if(type==="danger") dot.classList.add("danger");
+}
+
+function money(n){ return "$" + (Number(n||0).toLocaleString(undefined,{maximumFractionDigits:2})); }
+
+function escapeHtml(str){ return (str ?? "").toString().replace(/[&<>"']/g, m=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m])); }
+function escapeAttr(str){ return escapeHtml(str).replace(/"/g,"&quot;"); }
+
+/* ============================================================
+  BRANDING
+============================================================ */
+function isWhiteLabel(){ return !!salon?.white_label; }
+
+function applyBranding(){
+  const appName = getBrandName();
+
+  document.getElementById("brandName").textContent = isWhiteLabel() ? (salon?.name || "Salon") : appName;
+  document.getElementById("brandSub").textContent = isWhiteLabel() ? "Salon Suite" : "Tha DollHouse™ Salon Suite";
+
+  const color = (isWhiteLabel() && salon?.brand_color) ? salon.brand_color : "#C9A24D";
+  document.documentElement.style.setProperty("--gold", color);
+
+  const logoEl = document.getElementById("brandLogo");
+  const markEl = document.getElementById("brandMark");
+  if(isWhiteLabel() && salon?.logo_url){
+    logoEl.src = salon.logo_url;
+    logoEl.classList.remove("hidden");
+    markEl.classList.add("hidden");
+    document.title = (salon?.name || "Salon Suite");
+  }else{
+    logoEl.classList.add("hidden");
+    markEl.classList.remove("hidden");
+    document.title = appName + " | Tha DollHouse";
+  }
+
+  // Header in app
+  document.getElementById("salonHeaderName").textContent = salon?.name || "Your Salon";
+  document.getElementById("salonHeaderMission").textContent = salon?.mission || "Set your mission statement in Salon Profile.";
+  document.getElementById("salonHeaderLogo").src = salon?.logo_url || "assets/img/hero-stylists.png";
+}
+
+/* ============================================================
+  AUTH
+============================================================ */
+async function getSessionUser(){
+  if(!supabase) return null;
+  const { data } = await supabase.auth.getUser();
+  return data?.user || null;
+}
+
+async function login(){
+  if(!mustBeConnected()) return;
+  setAuthMsg("Signing in…");
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if(error){ setAuthMsg(error.message, true); return; }
+  user = data.user;
+  await boot();
+}
+
+async function signup(){
+  if(!mustBeConnected()) return;
+  setAuthMsg("Creating account…");
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const { error } = await supabase.auth.signUp({ email, password });
+  if(error){ setAuthMsg(error.message, true); return; }
+  setAuthMsg("Account created. Now log in.");
+}
+
+async function logout(){
+  if(supabase) await supabase.auth.signOut();
+  user = null; profile = null; salon = null;
+  screens.app.classList.add("hidden");
+  screens.landing.classList.remove("hidden");
+  document.getElementById("footerNav").classList.add("hidden");
+  document.getElementById("btnLogout").classList.add("hidden");
+  setBadge(document.getElementById("roleText"), document.getElementById("roleBadge"), "guest");
+  setBadge(document.getElementById("planText"), document.getElementById("planBadge"), "trial");
+  document.getElementById("pillRole").textContent = "guest";
+  document.getElementById("salonPill").textContent = "No salon linked";
+  setAuthMsg("");
+}
+
+document.getElementById("btnLogin").addEventListener("click", login);
+document.getElementById("btnSignup").addEventListener("click", signup);
+document.getElementById("btnLogout").addEventListener("click", logout);
+document.getElementById("btnLogout2").addEventListener("click", logout);
+document.getElementById("btnEnter").addEventListener("click", ()=>{
+  // scroll to login area quickly
+  document.getElementById("email").focus();
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+document.getElementById("btnPricing").addEventListener("click", ()=>{
+  alert("Connect Stripe links in Settings. Production activation requires webhook/Edge Function to update Supabase plan.");
+});
+document.getElementById("btnOpenPricing2").addEventListener("click", ()=>{
+  alert("Connect Stripe links in Settings. Production activation requires webhook/Edge Function to update Supabase plan.");
+});
+
+/* ============================================================
+  LOAD DATA
+============================================================ */
+async function loadProfile(){
+  const res = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
+  profile = res.data || null;
+  return res;
+}
+async function loadSalon(){
+  salon = null;
+  if(profile?.salon_id){
+    const s = await supabase.from("salons").select("*").eq("id", profile.salon_id).maybeSingle();
+    salon = s.data || null;
+  }
+}
+async function loadClients(){
+  const res = await supabase.from("clients").select("*").eq("salon_id", profile.salon_id).order("name");
+  clients = res.data || [];
+}
+async function loadStylists(){
+  const res = await supabase.from("stylists").select("*").eq("salon_id", profile.salon_id).order("name");
+  stylists = res.data || [];
+}
+async function loadServices(){
+  const res = await supabase.from("services").select("*").eq("salon_id", profile.salon_id).order("name");
+  services = res.data || [];
+}
+async function loadBookings(){
+  const res = await supabase
+    .from("bookings")
+    .select("*, clients(name), stylists(name), services(name,price,photo_url)")
+    .eq("salon_id", profile.salon_id)
+    .order("appointment_time", { ascending: true });
+  bookings = res.data || [];
+}
+async function loadEntries(){
+  const res = await supabase.from("bookkeeping_entries")
+    .select("*, services(name,price)")
+    .eq("salon_id", profile.salon_id)
+    .order("entry_date", { ascending: false });
+  entries = res.data || [];
+}
+async function loadPosts(){
+  const res = await supabase.from("social_posts")
+    .select("*")
+    .eq("salon_id", profile.salon_id)
+    .order("created_at", { ascending: false });
+  posts = res.data || [];
+}
+async function loadTasks(){
+  const res = await supabase.from("tasks")
+    .select("*")
+    .eq("salon_id", profile.salon_id)
+    .order("created_at", { ascending: false });
+  tasks = res.data || [];
+}
+async function loadNotes(){
+  const res = await supabase.from("notes")
+    .select("*")
+    .eq("salon_id", profile.salon_id)
+    .eq("scope", "global")
+    .maybeSingle();
+  globalNotes = res.data?.content || "";
+}
+
+/* ============================================================
+  ONBOARDING (fixes "Profile not found")
+============================================================ */
+async function saveOnboarding(){
+  const role = document.getElementById("obRole").value;
+  const salonId = document.getElementById("obSalonId").value.trim();
+  const salonName = document.getElementById("obSalonName").value.trim();
+  const msg = document.getElementById("obMsg");
+  msg.style.color = "var(--muted)";
+  msg.textContent = "Saving…";
+
+  // create profile if missing
+  if(!profile){
+    const insP = await supabase.from("profiles").insert([{ id:user.id, role, salon_id: null }]).select().maybeSingle();
+    if(insP.error){ msg.style.color="var(--danger)"; msg.textContent = insP.error.message; return; }
+    profile = insP.data;
+  }else{
+    const upP = await supabase.from("profiles").update({ role }).eq("id", user.id).select().maybeSingle();
+    if(upP.error){ msg.style.color="var(--danger)"; msg.textContent = upP.error.message; return; }
+    profile = upP.data;
+  }
+
+  if(role === "owner"){
+    if(!salonName){ msg.style.color="var(--danger)"; msg.textContent = "Owners: enter a salon name."; return; }
+    // create salon if none
+    if(!profile.salon_id){
+      const insS = await supabase.from("salons").insert([{
+        name: salonName,
+        plan: "trial",
+        white_label: false,
+        brand_color: "#C9A24D",
+        logo_url: null,
+        mission: "Our mission: premium service, unforgettable results.",
+        owner_id: user.id
+      }]).select().maybeSingle();
+      if(insS.error){ msg.style.color="var(--danger)"; msg.textContent = insS.error.message; return; }
+      salon = insS.data;
+      const link = await supabase.from("profiles").update({ salon_id: salon.id }).eq("id", user.id).select().maybeSingle();
+      if(link.error){ msg.style.color="var(--danger)"; msg.textContent = link.error.message; return; }
+      profile = link.data;
+    }
+  }else{
+    if(!salonId){ msg.style.color="var(--danger)"; msg.textContent = "Stylists: paste the Salon ID your owner gave you."; return; }
+    const link = await supabase.from("profiles").update({ salon_id: salonId }).eq("id", user.id).select().maybeSingle();
+    if(link.error){ msg.style.color="var(--danger)"; msg.textContent = link.error.message; return; }
+    profile = link.data;
+  }
+
+  msg.textContent = "Saved. Loading…";
+  await boot();
+}
+document.getElementById("btnOnboard").addEventListener("click", saveOnboarding);
+
+/* ============================================================
+  CORE BOOT
+============================================================ */
+async function boot(){
+  if(!mustBeConnected()) return;
+  if(!user) user = await getSessionUser();
+  if(!user) return;
+
+  // profile
+  const pRes = await loadProfile();
+  if(pRes.error){
+    setAuthMsg(pRes.error.message, true);
+    return;
+  }
+
+  // show app
+  screens.landing.classList.add("hidden");
+  screens.app.classList.remove("hidden");
+  document.getElementById("footerNav").classList.remove("hidden");
+  document.getElementById("btnLogout").classList.remove("hidden");
+
+  // If profile missing, show onboarding panel
+  const needsProfile = !profile;
+  document.getElementById("boxOnboarding").classList.toggle("hidden", !needsProfile);
+
+  // If no salon linked, onboarding stays visible
+  if(profile && !profile.salon_id){
+    document.getElementById("boxOnboarding").classList.remove("hidden");
+  }
+
+  // update role badge even if no salon
+  const role = profile?.role || "guest";
+  document.getElementById("pillRole").textContent = role;
+  setBadge(document.getElementById("roleText"), document.getElementById("roleBadge"), role, role==="guest" ? "gold" : "ok");
+  document.getElementById("pillRole").className = "pill " + (role==="owner" ? "gold" : "ok");
+
+  // If no salon linked yet, stop here
+  if(!profile?.salon_id){
+    setBadge(document.getElementById("planText"), document.getElementById("planBadge"), "trial");
+    document.getElementById("pillPlan").textContent = "trial";
+    document.getElementById("dashPlanText").textContent = "trial";
+    document.getElementById("salonPill").textContent = "No salon linked";
+    document.getElementById("ownerOnlyPerf").classList.add("hidden");
+    applyBranding();
+    populateAllSelectors();
+    renderAll();
+    setAuthMsg("Finish setup in the left panel.", false);
+    return;
+  }
+
+  // salon
+  await loadSalon();
+  applyBranding();
+
+  // plan + badges
+  const planVal = salon?.plan || "trial";
+  setBadge(document.getElementById("planText"), document.getElementById("planBadge"), planVal, planVal==="trial" ? "gold" : "ok");
+  document.getElementById("pillPlan").textContent = planVal;
+  document.getElementById("dashPlanText").textContent = planVal;
+  document.getElementById("salonPill").textContent = salon?.name ? (salon.name + " • Salon ID: " + salon.id) : "Salon linked";
+  document.getElementById("salonName").value = salon?.name || "";
+  document.getElementById("salonLogoUrl").value = salon?.logo_url || "";
+  document.getElementById("salonMission").value = salon?.mission || "";
+
+  // owner-only blocks
+  document.getElementById("ownerOnlyPerf").classList.toggle("hidden", role !== "owner");
+
+  // load all data
+  await refreshAll();
+
+  // default tab
+  setTab("dash");
+}
+
+async function refreshAll(){
+  if(!profile?.salon_id) return;
+  await Promise.all([
+    loadClients(),
+    loadStylists(),
+    loadServices(),
+    loadBookings(),
+    loadEntries(),
+    loadPosts(),
+    loadTasks(),
+    loadNotes()
+  ]);
+  populateAllSelectors();
+  renderAll();
+}
+
+/* ============================================================
+  UI: Tabs & Nav
+============================================================ */
+function setTab(tab){
+  // tab buttons
+  document.querySelectorAll(".tab").forEach(el=> el.classList.toggle("active", el.dataset.tab===tab));
+  document.querySelectorAll(".navBtn").forEach(el=> el.classList.toggle("active", el.dataset.tab===tab));
+
+  // views
+  const map = {
+    dash:"viewDash",
+    bookings:"viewBookings",
+    services:"viewServices",
+    stylists:"viewStylists",
+    bookkeeping:"viewBookkeeping",
+    social:"viewSocial",
+    ops:"viewOps"
+  };
+  Object.entries(map).forEach(([k,id])=>{
+    document.getElementById(id).classList.toggle("hidden", k!==tab);
+  });
+  document.getElementById("screenTitle").textContent =
+    tab==="dash" ? "Dashboard" :
+    tab==="bookings" ? "Bookings" :
+    tab==="services" ? "Services" :
+    tab==="stylists" ? "Stylists" :
+    tab==="bookkeeping" ? "Bookkeeping" :
+    tab==="social" ? "Social Posting Hub" : "Notes & Tasks";
+}
+
+document.querySelectorAll(".tab").forEach(el=>{
+  el.addEventListener("click", ()=>setTab(el.dataset.tab));
+});
+document.querySelectorAll(".navBtn").forEach(el=>{
+  el.addEventListener("click", ()=>setTab(el.dataset.tab));
+});
+
+/* ============================================================
+  SALON PROFILE
+============================================================ */
+document.getElementById("btnSaveSalon").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+  if(profile.role !== "owner"){
+    document.getElementById("salonMsg").style.color="var(--danger)";
+    document.getElementById("salonMsg").textContent="Owner only.";
+    return;
+  }
+  const name = document.getElementById("salonName").value.trim();
+  const logo_url = document.getElementById("salonLogoUrl").value.trim() || null;
+  const mission = document.getElementById("salonMission").value.trim() || null;
+  document.getElementById("salonMsg").style.color="var(--muted)";
+  document.getElementById("salonMsg").textContent="Saving…";
+
+  const up = await supabase.from("salons").update({ name, logo_url, mission }).eq("id", profile.salon_id).select().maybeSingle();
+  if(up.error){
+    document.getElementById("salonMsg").style.color="var(--danger)";
+    document.getElementById("salonMsg").textContent=up.error.message;
+    return;
+  }
+  salon = up.data;
+  applyBranding();
+  document.getElementById("salonMsg").textContent="Saved.";
+});
+
+document.getElementById("btnRefreshAll").addEventListener("click", refreshAll);
+
+/* ============================================================
+  CLIENTS
+============================================================ */
+document.getElementById("btnAddClient").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+  const name = document.getElementById("clientName").value.trim();
+  const phone = document.getElementById("clientPhone").value.trim() || null;
+  const msg = document.getElementById("clientMsg");
+  if(!name){ msg.style.color="var(--danger)"; msg.textContent="Client name required."; return; }
+  msg.style.color="var(--muted)"; msg.textContent="Adding…";
+  const ins = await supabase.from("clients").insert([{ salon_id: profile.salon_id, name, phone, loyalty_points:0 }]);
+  if(ins.error){ msg.style.color="var(--danger)"; msg.textContent=ins.error.message; return; }
+  document.getElementById("clientName").value="";
+  document.getElementById("clientPhone").value="";
+  await loadClients();
+  populateAllSelectors();
+  msg.textContent="Added.";
+});
+
+/* ============================================================
+  STYLISTS
+============================================================ */
+async function uploadToBucket(bucket, file){
+  const ext = (file.name.split(".").pop() || "jpg").toLowerCase();
+  const path = `${profile.salon_id}/${crypto.randomUUID()}.${ext}`;
+  const up = await supabase.storage.from(bucket).upload(path, file, { upsert:false });
+  if(up.error) return { error: up.error };
+  const pub = await supabase.storage.from(bucket).getPublicUrl(path);
+  return { url: pub.data.publicUrl };
+}
+
+document.getElementById("btnUploadStyPhoto").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  const f = document.getElementById("styPhotoFile").files?.[0];
+  const msg = document.getElementById("styMsg");
+  if(!f){ msg.style.color="var(--danger)"; msg.textContent="Choose a photo file first."; return; }
+  msg.style.color="var(--muted)"; msg.textContent="Uploading…";
+  const out = await uploadToBucket("stylist-photos", f);
+  if(out.error){ msg.style.color="var(--danger)"; msg.textContent=out.error.message; return; }
+  document.getElementById("styPhotoUrl").value = out.url;
+  msg.textContent="Uploaded.";
+});
+
+document.getElementById("btnAddStylist").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(profile.role !== "owner"){
+    document.getElementById("styMsg").style.color="var(--danger)";
+    document.getElementById("styMsg").textContent="Owner only.";
+    return;
+  }
+  const name = document.getElementById("styName").value.trim();
+  const photo_url = document.getElementById("styPhotoUrl").value.trim() || null;
+  const msg = document.getElementById("styMsg");
+  if(!name){ msg.style.color="var(--danger)"; msg.textContent="Name required."; return; }
+  msg.style.color="var(--muted)"; msg.textContent="Saving…";
+  const ins = await supabase.from("stylists").insert([{ salon_id: profile.salon_id, name, photo_url }]);
+  if(ins.error){ msg.style.color="var(--danger)"; msg.textContent=ins.error.message; return; }
+  document.getElementById("styName").value="";
+  document.getElementById("styPhotoUrl").value="";
+  document.getElementById("styPhotoFile").value="";
+  await loadStylists();
+  populateAllSelectors();
+  renderStylists();
+  msg.textContent="Added.";
+});
+
+/* ============================================================
+  SERVICES
+============================================================ */
+document.getElementById("btnUploadSvcPhoto").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  const f = document.getElementById("svcPhotoFile").files?.[0];
+  const msg = document.getElementById("svcMsg");
+  if(!f){ msg.style.color="var(--danger)"; msg.textContent="Choose a photo file first."; return; }
+  msg.style.color="var(--muted)"; msg.textContent="Uploading…";
+  const out = await uploadToBucket("service-photos", f);
+  if(out.error){ msg.style.color="var(--danger)"; msg.textContent=out.error.message; return; }
+  document.getElementById("svcPhotoUrl").value = out.url;
+  msg.textContent="Uploaded.";
+});
+
+document.getElementById("btnSaveService").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(profile.role !== "owner"){
+    document.getElementById("svcMsg").style.color="var(--danger)";
+    document.getElementById("svcMsg").textContent="Owner only.";
+    return;
+  }
+  const name = document.getElementById("svcName").value.trim();
+  const price = Number(document.getElementById("svcPrice").value || 0);
+  const cost_estimate = Number(document.getElementById("svcCost").value || 0) || null;
+  const photo_url = document.getElementById("svcPhotoUrl").value.trim() || null;
+  const msg = document.getElementById("svcMsg");
+  if(!name || !price){ msg.style.color="var(--danger)"; msg.textContent="Name + price required."; return; }
+
+  msg.style.color="var(--muted)"; msg.textContent="Saving…";
+  const ins = await supabase.from("services").insert([{ salon_id: profile.salon_id, name, price, cost_estimate, photo_url }]);
+  if(ins.error){ msg.style.color="var(--danger)"; msg.textContent=ins.error.message; return; }
+
+  document.getElementById("svcName").value="";
+  document.getElementById("svcPrice").value="";
+  document.getElementById("svcCost").value="";
+  document.getElementById("svcPhotoUrl").value="";
+  document.getElementById("svcPhotoFile").value="";
+
+  await loadServices();
+  populateAllSelectors();
+  renderServices();
+  msg.textContent="Saved.";
+});
+
+/* ============================================================
+  BOOKINGS (uses services)
+============================================================ */
+function getServiceById(id){ return services.find(s=>s.id===id) || null; }
+
+document.getElementById("bkService").addEventListener("change", ()=>{
+  const id = document.getElementById("bkService").value;
+  const s = getServiceById(id);
+  const box = document.getElementById("bkServicePreview");
+  if(!s){ box.innerHTML = '<div class="itemTitle" style="font-size:13px">Service preview</div><div class="itemMeta">Select a service to see price + photo.</div>'; return; }
+  box.innerHTML = `
+    <div class="itemTop">
+      <div>
+        <div class="itemTitle" style="font-size:13px">${escapeHtml(s.name)}</div>
+        <div class="itemMeta">Price: ${money(s.price)} ${s.cost_estimate ? " • Cost est.: "+money(s.cost_estimate) : ""}</div>
+      </div>
+      ${s.photo_url ? `<img class="thumb" src="${escapeAttr(s.photo_url)}" alt="service">` : ""}
+    </div>
+  `;
+});
+
+document.getElementById("btnAddBooking").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+
+  const client_id = document.getElementById("bkClient").value;
+  const stylist_id = document.getElementById("bkStylist").value;
+  const service_id = document.getElementById("bkService").value;
+  const appointment_time = document.getElementById("bkTime").value;
+  const deposit_paid = document.getElementById("bkDeposit").value === "true";
+  const status = document.getElementById("bkStatus").value;
+  const msg = document.getElementById("bookingMsg");
+
+  if(!client_id || !stylist_id || !service_id || !appointment_time){
+    msg.style.color="var(--danger)"; msg.textContent="Select client, stylist, service, and time."; return;
+  }
+
+  const svc = getServiceById(service_id);
+  msg.style.color="var(--muted)"; msg.textContent="Adding…";
+
+  const ins = await supabase.from("bookings").insert([{
+    salon_id: profile.salon_id,
+    client_id,
+    stylist_id,
+    service_id,
+    service_name: svc?.name || null,
+    service_price: svc?.price || null,
+    appointment_time: new Date(appointment_time).toISOString(),
+    deposit_paid,
+    status
+  }]);
+
+  if(ins.error){ msg.style.color="var(--danger)"; msg.textContent=ins.error.message; return; }
+
+  await loadBookings();
+  renderBookings();
+  msg.textContent="Added.";
+});
+
+async function setBookingStatus(id, status){
+  const up = await supabase.from("bookings").update({ status }).eq("id", id);
+  if(up.error) alert(up.error.message);
+  await loadBookings();
+  renderBookings();
+}
+
+/* ============================================================
+  BOOKKEEPING
+============================================================ */
+function monthKey(d){ const dt = new Date(d); return dt.getFullYear()+"-"+String(dt.getMonth()+1).padStart(2,"0"); }
+
+document.getElementById("bkDate").valueAsDate = new Date();
+
+document.getElementById("btnAddEntry").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+  const type = document.getElementById("bkType").value;
+  const amount = Number(document.getElementById("bkAmount").value || 0);
+  const category = document.getElementById("bkCategory").value.trim() || null;
+  const entry_date = document.getElementById("bkDate").value;
+  const service_id = document.getElementById("bkServiceLink").value || null;
+  const note = document.getElementById("bkNote").value.trim() || null;
+  const msg = document.getElementById("bkMsg");
+
+  if(!amount || !entry_date){ msg.style.color="var(--danger)"; msg.textContent="Amount + date required."; return; }
+  msg.style.color="var(--muted)"; msg.textContent="Saving…";
+
+  const ins = await supabase.from("bookkeeping_entries").insert([{
+    salon_id: profile.salon_id, type, amount, category, entry_date, service_id, note
+  }]);
+  if(ins.error){ msg.style.color="var(--danger)"; msg.textContent=ins.error.message; return; }
+
+  document.getElementById("bkAmount").value="";
+  document.getElementById("bkCategory").value="";
+  document.getElementById("bkNote").value="";
+
+  await loadEntries();
+  renderBookkeeping();
+  msg.textContent="Saved.";
+});
+
+/* ============================================================
+  SOCIAL POSTS
+============================================================ */
+document.getElementById("btnUploadPostImg").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  const f = document.getElementById("postFile").files?.[0];
+  const msg = document.getElementById("postMsg");
+  if(!f){ msg.style.color="var(--danger)"; msg.textContent="Choose an image first."; return; }
+  msg.style.color="var(--muted)"; msg.textContent="Uploading…";
+  const out = await uploadToBucket("social-posts", f);
+  if(out.error){ msg.style.color="var(--danger)"; msg.textContent=out.error.message; return; }
+  document.getElementById("postImgUrl").value = out.url;
+  msg.textContent="Uploaded.";
+});
+
+document.getElementById("btnSavePost").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+  const caption = document.getElementById("postCaption").value.trim() || "";
+  const image_url = document.getElementById("postImgUrl").value.trim() || null;
+  const msg = document.getElementById("postMsg");
+  if(!caption && !image_url){ msg.style.color="var(--danger)"; msg.textContent="Add a caption or an image."; return; }
+
+  msg.style.color="var(--muted)"; msg.textContent="Saving…";
+  const ins = await supabase.from("social_posts").insert([{
+    salon_id: profile.salon_id,
+    caption,
+    image_url,
+    status: "draft"
+  }]);
+  if(ins.error){ msg.style.color="var(--danger)"; msg.textContent=ins.error.message; return; }
+
+  document.getElementById("postCaption").value="";
+  document.getElementById("postImgUrl").value="";
+  document.getElementById("postFile").value="";
+  await loadPosts();
+  renderPosts();
+  msg.textContent="Draft saved.";
+});
+
+/* ============================================================
+  NOTES & TASKS
+============================================================ */
+document.getElementById("btnSaveNotes").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+  const content = document.getElementById("notesGlobal").value || "";
+  const msg = document.getElementById("notesMsg");
+  msg.style.color="var(--muted)"; msg.textContent="Saving…";
+
+  // Upsert notes row
+  const up = await supabase.from("notes").upsert([{
+    salon_id: profile.salon_id,
+    scope: "global",
+    content
+  }], { onConflict: "salon_id,scope" }).select().maybeSingle();
+
+  if(up.error){ msg.style.color="var(--danger)"; msg.textContent=up.error.message; return; }
+  globalNotes = up.data?.content || content;
+  msg.textContent="Saved.";
+});
+
+document.getElementById("btnExportNotes").addEventListener("click", ()=>{
+  const txt = document.getElementById("notesGlobal").value || "";
+  const blob = new Blob([txt], { type:"text/plain" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "HairHaus-Notes.txt";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+document.getElementById("btnAddTask").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+  const text = document.getElementById("taskText").value.trim();
+  const msg = document.getElementById("taskMsg");
+  if(!text){ msg.style.color="var(--danger)"; msg.textContent="Enter a task."; return; }
+  msg.style.color="var(--muted)"; msg.textContent="Saving…";
+  const ins = await supabase.from("tasks").insert([{ salon_id: profile.salon_id, text, done:false }]);
+  if(ins.error){ msg.style.color="var(--danger)"; msg.textContent=ins.error.message; return; }
+  document.getElementById("taskText").value="";
+  await loadTasks();
+  renderTasks();
+  msg.textContent="Added.";
+});
+
+async function toggleTask(id, done){
+  const up = await supabase.from("tasks").update({ done }).eq("id", id);
+  if(up.error) alert(up.error.message);
+  await loadTasks();
+  renderTasks();
+}
+
+/* ============================================================
+  PLAN REFRESH (frontend)
+============================================================ */
+document.getElementById("btnRefreshPlan").addEventListener("click", async ()=>{
+  if(!mustBeConnected()) return;
+  if(!profile?.salon_id) return;
+  const s = await supabase.from("salons").select("*").eq("id", profile.salon_id).maybeSingle();
+  if(s.error){ alert(s.error.message); return; }
+  salon = s.data;
+  applyBranding();
+  const planVal = salon?.plan || "trial";
+  setBadge(document.getElementById("planText"), document.getElementById("planBadge"), planVal, planVal==="trial" ? "gold" : "ok");
+  document.getElementById("pillPlan").textContent = planVal;
+  document.getElementById("dashPlanText").textContent = planVal;
+});
+
+/* ============================================================
+  SELECTORS + RENDER
+============================================================ */
+function populateAllSelectors(){
+  // booking selects
+  const bkClient = document.getElementById("bkClient");
+  bkClient.innerHTML = `<option value="">Select client</option>` + clients.map(c=>`<option value="${c.id}">${escapeHtml(c.name)}</option>`).join("");
+
+  const bkStylist = document.getElementById("bkStylist");
+  bkStylist.innerHTML = `<option value="">Select stylist</option>` + stylists.map(s=>`<option value="${s.id}">${escapeHtml(s.name)}</option>`).join("");
+
+  const bkService = document.getElementById("bkService");
+  bkService.innerHTML = `<option value="">Select service</option>` + services.map(s=>`<option value="${s.id}">${escapeHtml(s.name)} • ${money(s.price)}</option>`).join("");
+
+  // bookkeeping service link
+  const bkServiceLink = document.getElementById("bkServiceLink");
+  bkServiceLink.innerHTML = `<option value="">Link to service (optional)</option>` + services.map(s=>`<option value="${s.id}">${escapeHtml(s.name)}</option>`).join("");
+}
+
+function renderAll(){
+  renderKpis();
+  renderBookings();
+  renderServices();
+  renderStylists();
+  renderBookkeeping();
+  renderPosts();
+  renderTasks();
+  // notes
+  document.getElementById("notesGlobal").value = globalNotes || "";
+}
+
+function renderKpis(){
+  const now = new Date();
+  const days30 = new Date(now.getTime() - 30*24*3600*1000);
+  const last30Entries = entries.filter(e=> e.entry_date && new Date(e.entry_date) >= days30);
+  const rev = last30Entries.filter(e=>e.type==="revenue").reduce((a,e)=>a+Number(e.amount||0),0);
+  const exp = last30Entries.filter(e=>e.type==="expense").reduce((a,e)=>a+Number(e.amount||0),0);
+  const profit = rev - exp;
+
+  const last30Bookings = bookings.filter(b=> b.appointment_time && new Date(b.appointment_time) >= days30);
+
+  document.getElementById("kRev").textContent = money(rev);
+  document.getElementById("kExp").textContent = money(exp);
+  document.getElementById("kProfit").textContent = money(profit);
+  document.getElementById("kBookings").textContent = String(last30Bookings.length);
+
+  // stylist perf owner-only
+  if(profile?.role === "owner"){
+    const perf = {};
+    stylists.forEach(s=> perf[s.id] = { name:s.name, total:0, completed:0, no_show:0 });
+    last30Bookings.forEach(b=>{
+      const p = perf[b.stylist_id];
+      if(!p) return;
+      p.total++;
+      if(b.status==="completed") p.completed++;
+      if(b.status==="no_show") p.no_show++;
+    });
+    const box = document.getElementById("stylistPerf");
+    box.innerHTML = "";
+    const vals = Object.values(perf);
+    if(!vals.length){
+      box.innerHTML = `<div class="item">Add stylists to see performance.</div>`;
+    }else{
+      vals.forEach(s=>{
+        const div = document.createElement("div");
+        div.className = "item";
+        div.innerHTML = \`
+          <div class="itemTop">
+            <div>
+              <div class="itemTitle">\${escapeHtml(s.name)}</div>
+              <div class="itemMeta">Bookings: \${s.total} • Completed: \${s.completed} • No-shows: \${s.no_show}</div>
+            </div>
+            <span class="pill gold">30d</span>
+          </div>\`;
+        box.appendChild(div);
+      });
+    }
+  }
+}
+
+function renderBookings(){
+  const list = document.getElementById("bookingsList");
+  const role = profile?.role || "guest";
+  list.innerHTML = bookings.length ? "" : `<div class="item">No bookings yet.</div>`;
+
+  bookings.forEach(b=>{
+    const clientName = b.clients?.name || "Client";
+    const stylistName = b.stylists?.name || "Stylist";
+    const svcName = b.services?.name || b.service_name || "Service";
+    const price = b.services?.price ?? b.service_price;
+    const photo = b.services?.photo_url;
+
+    const when = b.appointment_time ? new Date(b.appointment_time) : null;
+    const dt = when ? when.toLocaleString() : "No time";
+
+    const depPill = b.deposit_paid ? `<span class="pill ok"><span class="dot ok"></span>Deposit</span>` : `<span class="pill"><span class="dot"></span>No deposit</span>`;
+    const statusPill =
+      b.status === "completed" ? `<span class="pill ok">Completed</span>` :
+      b.status === "cancelled" ? `<span class="pill danger">Cancelled</span>` :
+      b.status === "no_show" ? `<span class="pill danger">No-Show</span>` :
+      `<span class="pill gold">Scheduled</span>`;
+
+    const controls = (role==="owner") ? \`
+      <div class="row" style="margin-top:10px;">
+        <button class="dark" type="button" data-act="complete" data-id="\${b.id}">Complete</button>
+        <button class="ghost" type="button" data-act="cancel" data-id="\${b.id}">Cancel</button>
+        <button class="danger" type="button" data-act="noshow" data-id="\${b.id}">No-Show</button>
+      </div>\` : ``;
+
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = \`
+      <div class="itemTop">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          \${photo ? `<img class="thumb" src="\${escapeAttr(photo)}" alt="svc">` : ""}
+          <div>
+            <div class="itemTitle">\${escapeHtml(clientName)} — \${escapeHtml(svcName)} \${price ? "• "+money(price) : ""}</div>
+            <div class="itemMeta">\${escapeHtml(dt)} • Stylist: \${escapeHtml(stylistName)}</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end;">
+          \${depPill}
+          \${statusPill}
+        </div>
+      </div>
+      \${controls}
+    \`;
+    list.appendChild(div);
+  });
+
+  list.querySelectorAll("button[data-act]").forEach(btn=>{
+    btn.addEventListener("click", async ()=>{
+      const id = btn.getAttribute("data-id");
+      const act = btn.getAttribute("data-act");
+      const status = act==="complete" ? "completed" : act==="cancel" ? "cancelled" : "no_show";
+      await setBookingStatus(id, status);
+      renderKpis();
+    });
+  });
+}
+
+function renderServices(){
+  const list = document.getElementById("servicesList");
+  list.innerHTML = services.length ? "" : `<div class="item">No services yet. Add your first service above.</div>`;
+  services.forEach(s=>{
+    const div = document.createElement("div");
+    div.className = "item";
+    const margin = (Number(s.price||0) - Number(s.cost_estimate||0));
+    div.innerHTML = \`
+      <div class="itemTop">
+        <div style="display:flex; gap:12px; align-items:flex-start;">
+          \${s.photo_url ? `<img class="thumb" src="\${escapeAttr(s.photo_url)}" alt="svc">` : ""}
+          <div>
+            <div class="itemTitle">\${escapeHtml(s.name)} • \${money(s.price)}</div>
+            <div class="itemMeta">Cost est.: \${s.cost_estimate ? money(s.cost_estimate) : "—"} • Est. margin: \${money(margin)}</div>
+          </div>
+        </div>
+        <span class="pill gold">Service</span>
+      </div>\`;
+    list.appendChild(div);
+  });
+}
+
+function renderStylists(){
+  const list = document.getElementById("stylistsList");
+  list.innerHTML = stylists.length ? "" : `<div class="item">No stylists yet.</div>`;
+  stylists.forEach(s=>{
+    const div = document.createElement("div");
+    div.className = "item";
+    div.innerHTML = \`
+      <div class="itemTop">
+        <div style="display:flex; gap:12px; align-items:center;">
+          \${s.photo_url ? `<img class="thumb" src="\${escapeAttr(s.photo_url)}" alt="stylist">` : `<div class="thumb" style="display:flex;align-items:center;justify-content:center; color:var(--muted)">👤</div>`}
+          <div>
+            <div class="itemTitle">\${escapeHtml(s.name)}</div>
+            <div class="itemMeta">\${s.bio ? escapeHtml(s.bio) : "Stylist profile"}</div>
+          </div>
+        </div>
+        <span class="pill ok"><span class="dot ok"></span>Stylist</span>
+      </div>\`;
+    list.appendChild(div);
+  });
+}
+
+function renderBookkeeping(){
+  // Monthly summary (current month)
+  const now = new Date();
+  const mk = monthKey(now);
+  const monthEntries = entries.filter(e=> e.entry_date && monthKey(e.entry_date)===mk);
+  const rev = monthEntries.filter(e=>e.type==="revenue").reduce((a,e)=>a+Number(e.amount||0),0);
+  const exp = monthEntries.filter(e=>e.type==="expense").reduce((a,e)=>a+Number(e.amount||0),0);
+  const profit = rev - exp;
+
+  document.getElementById("mRev").textContent = money(rev);
+  document.getElementById("mExp").textContent = money(exp);
+  document.getElementById("mProfit").textContent = money(profit);
+
+  // top service by revenue
+  const svcMap = {};
+  monthEntries.filter(e=>e.type==="revenue" && e.service_id).forEach(e=>{
+    svcMap[e.service_id] = (svcMap[e.service_id]||0) + Number(e.amount||0);
+  });
+  let topSvc = "—";
+  if(Object.keys(svcMap).length){
+    const topId = Object.entries(svcMap).sort((a,b)=>b[1]-a[1])[0][0];
+    topSvc = services.find(s=>s.id===topId)?.name || "—";
+  }
+  document.getElementById("mTopSvc").textContent = topSvc;
+
+  // entries list
+  const list = document.getElementById("entriesList");
+  list.innerHTML = entries.length ? "" : `<div class="item">No entries yet.</div>`;
+  entries.slice(0,60).forEach(e=>{
+    const div = document.createElement("div");
+    div.className="item";
+    const typ = e.type==="revenue" ? `<span class="pill ok"><span class="dot ok"></span>Revenue</span>` : `<span class="pill danger"><span class="dot danger"></span>Expense</span>`;
+    const svc = e.services?.name ? ` • ${escapeHtml(e.services.name)}` : "";
+    div.innerHTML = \`
+      <div class="itemTop">
+        <div>
+          <div class="itemTitle">\${typ} \${money(e.amount)}\${svc}</div>
+          <div class="itemMeta">\${escapeHtml(e.entry_date)} • \${escapeHtml(e.category || "Uncategorized")} \${e.note ? " • "+escapeHtml(e.note) : ""}</div>
+        </div>
+        <span class="pill gold">Entry</span>
+      </div>\`;
+    list.appendChild(div);
+  });
+}
+
+function renderPosts(){
+  const list = document.getElementById("postsList");
+  list.innerHTML = posts.length ? "" : `<div class="item">No drafts yet.</div>`;
+  posts.forEach(p=>{
+    const div = document.createElement("div");
+    div.className="item";
+    div.innerHTML = \`
+      <div class="itemTop">
+        <div>
+          <div class="itemTitle">\${escapeHtml(p.caption || "Untitled")}</div>
+          <div class="itemMeta">\${new Date(p.created_at).toLocaleString()} • Status: \${escapeHtml(p.status)}</div>
+        </div>
+        <span class="pill gold">Draft</span>
+      </div>
+      \${p.image_url ? `<div style="margin-top:10px"><img class="thumbLg" src="\${escapeAttr(p.image_url)}" alt="post image"></div>` : ""}
+    \`;
+    list.appendChild(div);
+  });
+}
+
+function renderTasks(){
+  const list = document.getElementById("tasksList");
+  list.innerHTML = tasks.length ? "" : `<div class="item">No tasks yet.</div>`;
+  tasks.forEach(t=>{
+    const div = document.createElement("div");
+    div.className="item";
+    div.innerHTML = \`
+      <div class="itemTop">
+        <div>
+          <div class="itemTitle">\${escapeHtml(t.text)}</div>
+          <div class="itemMeta">\${t.done ? "Done" : "Open"} • \${new Date(t.created_at).toLocaleString()}</div>
+        </div>
+        <button type="button" class="\${t.done ? "ghost" : "dark"}" data-id="\${t.id}" data-done="\${t.done ? "1":"0"}">\${t.done ? "Mark Open" : "Mark Done"}</button>
+      </div>\`;
+    list.appendChild(div);
+  });
+  list.querySelectorAll("button[data-id]").forEach(btn=>{
+    btn.addEventListener("click", async ()=>{
+      const id = btn.getAttribute("data-id");
+      const done = btn.getAttribute("data-done") === "1";
+      await toggleTask(id, !done);
+    });
+  });
+}
+
+/* ============================================================
+  INIT
+============================================================ */
+(async ()=>{
+  // show gentle warning if not configured
+  if(!supabase){
+    setAuthMsg("Click Settings to add your Supabase URL + anon key. After saving, the page reloads.", true);
+    return;
+  }
+
+  user = await getSessionUser();
+  if(user) await boot();
+})();
+</script>
+
+<script>
+if("serviceWorker" in navigator){
+  navigator.serviceWorker.register("service-worker.js").catch(()=>{});
+}
+</script>
+</body>
+</html>
