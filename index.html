@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HairHaus Pro | Tha DollHouse</title>
+
+<style>
+:root{
+  --bg:#000;
+  --panel:#0f0f0f;
+  --text:#fff;
+  --muted:#bdbdbd;
+  --gold:#C9A24D;
+}
+body{
+  margin:0;
+  font-family:system-ui;
+  background:#000;
+  color:white;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+.card{
+  background:#111;
+  border-radius:16px;
+  padding:20px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.grid{
+  display:grid;
+  gap:20px;
+}
+@media(min-width:900px){
+  .grid{grid-template-columns:1fr 1fr;}
+}
+button{
+  background:var(--gold);
+  border:none;
+  padding:14px;
+  border-radius:12px;
+  font-weight:bold;
+  cursor:pointer;
+}
+input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#000;
+  color:white;
+  margin-top:10px;
+}
+.hidden{display:none;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LANDING -->
+<div id="screenLanding" class="grid">
+
+<div class="card">
+<h1 style="font-size:42px;color:var(--gold);">HairHaus Pro</h1>
+<p style="color:#aaa;">Luxury Salon Operating System</p>
+
+<p style="margin-top:20px;">
+Bookings • Clients • Photos • Analytics • White Label Branding
+</p>
+
+<div style="margin-top:25px;">
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button style="width:100%;margin-top:14px;" onclick="login()">
+Login
+</button>
+</div>
+
+</div>
+
+<div class="card" style="padding:0;">
+<img src="assets/img/hero-stylists.png" style="width:100%;">
+</div>
+
+</div>
+
+<!-- APP -->
+<div id="screenApp" class="hidden">
+
+<div class="card">
+<h2>Dashboard</h2>
+<p id="userEmail"></p>
+
+<button onclick="logout()">Logout</
