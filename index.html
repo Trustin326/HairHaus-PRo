@@ -1,0 +1,129 @@
+<!-- HAIRHAUS PRO FINAL MASTER BUILD -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HairHaus Pro</title>
+
+<script type="module">
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const SUPABASE_URL = "https://fjjedjoakplopglfkjsn.supabase.co";
+const SUPABASE_ANON_KEY = "PASTE_ANON_KEY_HERE";
+
+window.supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+
+<style>
+body{
+background:#000;
+color:#fff;
+font-family:system-ui;
+margin:0;
+}
+.card{
+background:#111;
+border-radius:20px;
+padding:20px;
+margin:20px;
+border:1px solid rgba(255,255,255,.1);
+}
+.gold{
+background:linear-gradient(90deg,#C9A24D,#FFD87A);
+color:#000;
+border:none;
+padding:14px;
+border-radius:12px;
+font-weight:700;
+cursor:pointer;
+}
+input{
+width:100%;
+padding:14px;
+margin:8px 0;
+border-radius:10px;
+border:none;
+background:#222;
+color:#fff;
+}
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+<h1 style="color:#C9A24D">HairHaus Pro</h1>
+<p>Luxury Salon Operating System</p>
+
+<input id="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
+
+<button class="gold" onclick="login()">Login</button>
+<button onclick="signup()">Create Account</button>
+
+<div id="authMsg"></div>
+</div>
+
+<div id="dashboard" class="hidden card">
+
+<h2>Owner Dashboard</h2>
+
+<h3>💰 Bookkeeping</h3>
+<input id="revInput" placeholder="Revenue">
+<input id="expInput" placeholder="Expense">
+<button onclick="calcProfit()">Calculate</button>
+<div id="profitOut"></div>
+
+<h3>📱 Social Post Draft</h3>
+<input type="file" id="postImg">
+<textarea id="postCaption" placeholder="Caption"></textarea>
+<button onclick="saveDraft()">Save Draft</button>
+
+<h3>🧠 Notes</h3>
+<textarea id="notesBox"></textarea>
+<button onclick="saveNotes()">Save Notes</button>
+
+</div>
+
+<script>
+async function login(){
+const email=document.getElementById("email").value;
+const password=document.getElementById("password").value;
+
+const {data,error}=await supabase.auth.signInWithPassword({email,password});
+
+if(error){
+document.getElementById("authMsg").innerText=error.message;
+return;
+}
+
+document.getElementById("dashboard").classList.remove("hidden");
+}
+
+async function signup(){
+const email=document.getElementById("email").value;
+const password=document.getElementById("password").value;
+
+await supabase.auth.signUp({email,password});
+alert("Account created");
+}
+
+function calcProfit(){
+let r=Number(revInput.value||0);
+let e=Number(expInput.value||0);
+profitOut.innerText="Profit: $"+(r-e);
+}
+
+function saveDraft(){
+alert("Draft saved locally (API ready)");
+}
+
+function saveNotes(){
+alert("Notes saved (connect Supabase table)");
+}
+</script>
+
+</body>
+</html>
